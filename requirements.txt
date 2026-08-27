@@ -1,0 +1,8 @@
+torch>=2.0.0
+nnunetv2
+SimpleITK
+scikit-learn
+joblib
+opencv-python-headless
+scipy
+pandas
