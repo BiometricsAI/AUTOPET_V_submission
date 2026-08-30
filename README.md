@@ -1,10 +1,10 @@
 # Anatomy-Aware Promptable Segmentation with Online Interactive Training for AUTOPET V
 
-**Team UAM — Universidad Autónoma de Madrid**
+**Team UAM**
 
 This repository contains our submission to the **AUTOPET V** interactive
 lesion-segmentation challenge (MICCAI 2026): a promptable, anatomy-aware PET/CT
-segmentation model with online interactive training, plus a lightweight tracer
+segmentation model with online interactive training, plus a robust tracer
 classifier that routes each study to the most appropriate model at inference time.
 
 ---
