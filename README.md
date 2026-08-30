@@ -122,8 +122,7 @@ subfolder with the checkpoint.
 > but the nnU-Net folder is `Dataset005_psma/` — map them as shown above.
 >
 > The other two interactive checkpoints (`…sigma5…fold_2` of Dataset003 and
-> `…sigma10…fold_3` of Dataset005) are ablation variants and are **not required** to run
-> the container; include them only to reproduce those experiments.
+> `…sigma10…fold_3` of Dataset005) are ablation variants; include them only to reproduce those experiments.
 
 **Phase 1 (pre-training backbones) — for reproducing the Phase-1 stage:**
 
@@ -154,61 +153,7 @@ nnUNet_results/
         └── fold_3/checkpoint_best.pth      # from Drive
 ```
 
----
-
-## Inference pipeline
-
-The container is called **once per interaction iteration** by the challenge platform
-(the interactive loop is handled externally). For each call, `process.py`:
-
-1. Reads the CT and PET studies and the accumulated `lesion-clicks.json`.
-2. Runs the **tracer classifier** (`tracer_classifier.py` + Random Forest) on the PET MIP
-   and routes the case:
-   - **FDG (or low-confidence)** → `nnUNet_Interactive_sigma_10` (trained on Dataset003, FDG+PSMA).
-   - **PSMA (P(PSMA) ≥ 0.65)** → `nnUNet_Interactive_sigma_5` (trained on Dataset005, PSMA-only).
-3. Builds the 5-channel input `[CT, PET, prev_mask, dist_fg, dist_bg]`, where the guidance
-   channels are Gaussian heatmaps at the click locations and `prev_mask` is the soft
-   prediction from the previous iteration (persisted in `/output` between iterations).
-4. Runs sliding-window inference and writes the segmentation as `.mha`.
-
----
-
-## Build, test and export
-
-```bash
-# 1) Build the image
-./build.sh
-
-# 2) Run locally on a case placed in test/input/ (images/ct, images/pet, lesion-clicks.json)
-./test.sh
-
-# 3) Export the image for submission (produces UAM_team_submission.tar.gz)
-./export.sh
-```
-
-Target runtime (challenge): **NVIDIA A10G (24 GB VRAM), 8 CPUs, 30 GB RAM**. The code
-falls back to CPU automatically when no GPU is available.
-
 ### Requirements
 
-Dependencies are installed inside the container from `requirements.txt`. Pin `nnunetv2`
-to the same version used for training to guarantee that the trainer APIs and preprocessing
-match the released weights.
+Dependencies are installed inside the container from `requirements.txt`.
 
----
-
-## Citation
-
-If you use this work, please cite:
-
-> **Anatomy-Aware Promptable Segmentation with Online Interactive Training for AUTOPET V.**
-> Team UAM, Universidad Autónoma de Madrid. MICCAI 2026 — AUTOPET V Challenge.
-
-```bibtex
-@inproceedings{uam_autopetv_2026,
-  title     = {Anatomy-Aware Promptable Segmentation with Online Interactive Training for AUTOPET V},
-  author    = {Lozano, Pablo and others},
-  booktitle = {MICCAI 2026 -- AUTOPET V Challenge},
-  year      = {2026}
-}
-```
