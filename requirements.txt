@@ -1,0 +1,25 @@
+# ===== Core (deep learning + nnUNet) =====
+# IMPORTANTE: fija nnunetv2 a la MISMA version de tu entorno de entrenamiento
+# (mira `pip show nnunetv2`). Si entrenaste con un fork propio de nnUNet
+# (/home/pablolozano/nnUNet), instala ESE, no el paquete de PyPI, o las APIs
+# internas (build_network_architecture, run_case, convert_...) pueden no casar.
+torch>=2.0.0
+nnunetv2
+
+# ===== IO de imagen / datos =====
+SimpleITK
+nibabel                 # tracer_classifier.py, simulate_scribbles.py
+pandas
+# numpy lo traen torch/nnunetv2; no lo fijamos para evitar conflictos 1.x/2.x
+
+# ===== Tracer classifier (tracer_classifier.py) =====
+scikit-learn
+opencv-python-headless  # cv2  (headless: sin GUI, ideal para Docker)
+scipy
+joblib
+tqdm
+
+# ===== Scribbles + trainers custom (simulate_scribbles.py, nnUNetTr4_Interactive*) =====
+scikit-image            # skimage: skeletonize, find_boundaries, draw.line, morphology
+connected-components-3d # cc3d
+networkx                # grafo del centerline en scribble_centerline
