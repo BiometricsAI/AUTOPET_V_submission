@@ -83,7 +83,7 @@ are hosted on Google Drive and must be downloaded and placed manually under
 this repository** inside each model folder, so **only the checkpoints (`.pth`) need to be
 downloaded**.
 
-**➡ [Download checkpoints (Google Drive)](PON_AQUI_EL_LINK_DE_DRIVE)**
+**➡ [Download checkpoints (Google Drive)](https://drive.google.com/file/d/1tlMX7ru_Ra17hgGgKbQ_Vcwsewa1tNOv/view?usp=sharing)**
 
 ### Drive structure
 
@@ -97,7 +97,7 @@ folders (one checkpoint per fold, named `fold_0_checkpoint_best.pth`,
 ├── Dataset003_complete_PreTr2/                                        # Phase 1 — V2
 ├── Dataset003_complete_PreTr3/                                        # Phase 1 — V3
 ├── Dataset003_complete_PreTr4/                                        # Phase 1 — V4
-├── Dataset005_psma_PreTr4/                                            # Phase 1 — V4 (PSMA-only)
+├── Dataset005_psma_PreTr3/                                            # Phase 1 — V3 (PSMA-only)
 ├── Dataset003_complete_Interactive_sigma10_fold_2_checkpoint_best.pth # Phase 2 (FDG+PSMA)
 ├── Dataset003_complete_Interactive_sigma5_fold_2_checkpoint_best.pth
 ├── Dataset005_complete_Interactive_sigma10_fold_3_checkpoint_best.pth
