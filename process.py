@@ -1,17 +1,4 @@
-"""
-UAM_team_submission - AutoPET interactive router for Grand Challenge.
 
-Usa el MISMO tracer_classifier.py externo que dice_score_inter_check.py (enrutado
-identico) y hace inferencia in-process con 5 canales [CT, PET, prev_mask, dist_fg, dist_bg].
-
-PERSISTENCIA ENTRE ITERACIONES: el contenedor es llamado UNA vez por iteracion
-(los organizadores gestionan el bucle). Segun su correo, los datos que deban
-sobrevivir entre iteraciones se escriben/leen en /output (NO /cache, que no
-persiste en la plataforma). Por eso prev_mask se guarda en /output.
-
-Fixes: clicks como voxel-index [i,j,k]->(z,y,x); transpose_forward en el mapeo;
-guia == trainer._add_bump (exp, pico 1, sigma 10 FDG / 5 PSMA).
-"""
 import os
 import sys
 import json
